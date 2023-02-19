@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int isdigit(int);
-
 int find_numbers(char* arr, int i)
 {
     int n = 0;
@@ -43,9 +41,6 @@ int find_numbers(char* arr, int i)
         }
         return 1;
     }
-    /*for (int j = 0; j < i; j++) {
-        printf("%.2f ", mas[j]);
-    }*/
     return 0;
 }
 
