@@ -1,2 +1,3 @@
+all: geometry
 geometry: geometry.c
-	gcc -Wall -Werror geometry.c -o geometry
+	gcc -Wall -Werror -o geometry geometry.c
