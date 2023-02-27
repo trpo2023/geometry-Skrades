@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 void to_low(char text[])
 {
     for (int i = 0; i < strlen(text) - 1; i++) {
@@ -22,30 +21,6 @@ int check_numbers(char text[], int* p)
     if (text[i] == '0') {
         if (text[i + 1] != '.' && strchr(str2, text[i + 1]) != NULL) {
             printf("(%d): expected '.' \n", i);
-            return 1;
-        }
-    }
-    if (strchr(str2, text[i]) == NULL) {
-        printf("(%d): unexpected character\n", i);
-        return 1;
-    }
-    while (strchr(str2, text[i]) != NULL) {
-        i++;
-    }
-    if (text[i] == ',' || text[i] == ')') {
-        printf("(%d): expected number\n", i);
-        return 1;
-    }
-    if (text[i] != ' ') {
-        printf("(%d): expected ' '\n", i);
-        return 1;
-    }
-    while (text[i] == ' ') {
-        i++;
-    }
-    if (text[i] == '0') {
-        if (text[i + 1] != '.' && strchr(str2, text[i + 1]) != NULL) {
-            printf("(%d): expected '.'\n", i);
             return 1;
         }
     }
