@@ -1,4 +1,4 @@
-CiRcLe(0 0, 1.5)
-circle(0    2.6, 1.5)
+CiRcLe(0   0,    1.5)
+circle(0    2.6, 1.5(
 circle(3 x2, 34) 
-circle(0 5, 54(
+circle(0 5  54)

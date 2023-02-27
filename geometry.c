@@ -3,6 +3,24 @@
 #include <stdlib.h>
 #include <string.h>
 
+int get_index(char text[], int x)
+{
+    int c = 0;
+    if (x == ')') {
+        while (text[c] != '\n') {
+            c++;
+        }
+        return c - 1;
+    }
+    if (x == '(') {
+        while (text[c] != 'e') {
+            c++;
+        }
+        return c + 1;
+    }
+    return 0;
+}
+
 void to_low(char text[])
 {
     for (int i = 0; i < strlen(text) - 1; i++) {
@@ -13,30 +31,34 @@ void to_low(char text[])
 int check_numbers(char text[], int* p)
 {
     int i = *p;
-    char nums[13] = "-.0123456789";
+    char nums[13] = "0123456789.";
 
     while (text[i] == ' ') {
         i++;
     }
     if (text[i] == '0') {
         if (text[i + 1] != '.' && strchr(nums, text[i + 1]) != NULL) {
-            printf("(%d): expected '.' \n", i);
+            printf("%s", text);
+            printf("Error(%d): expected '.' \n", i);
             return 1;
         }
     }
     if (strchr(nums, text[i]) == NULL) {
-        printf("(%d): unexpected character\n", i);
+        printf("%s", text);
+        printf("Error(%d): unexpected character\n", i);
         return 1;
     }
     while (strchr(nums, text[i]) != NULL) {
         i++;
     }
     if (text[i] == ',' || text[i] == ')') {
-        printf("(%d): expected number\n", i);
+        printf("%s", text);
+        printf("Error(%d): expected number\n", i);
         return 1;
     }
     if (text[i] != ' ') {
-        printf("(%d): expected ' '\n", i);
+        printf("%s", text);
+        printf("Error(%d): expected ' '\n", i);
         return 1;
     }
     while (text[i] == ' ') {
@@ -44,16 +66,23 @@ int check_numbers(char text[], int* p)
     }
     if (text[i] == '0') {
         if (text[i + 1] != '.' && strchr(nums, text[i + 1]) != NULL) {
-            printf("(%d): expected '.'\n", i);
+            printf("%s", text);
+            printf("Error(%d): expected '.'\n", i);
             return 1;
         }
     }
     if (strchr(nums, text[i]) == NULL) {
-        printf("(%d): unexpected character\n", i);
+        printf("%s", text);
+        printf("Error(%d): unexpected character\n", i);
         return 1;
     }
     while (strchr(nums, text[i]) != NULL) {
         i++;
+    }
+    if (text[i] != ',') {
+        printf("%s\n", text);
+        printf("Error(%d): expected ','\n", i);
+        return 1;
     }
     while (text[i] == ' ') {
         i++;
@@ -168,19 +197,19 @@ int Error_check(char* text)
             if (strncmp(&str[0], "(", 1) == 0) {
                 if (strncmp(&str[1], ",", 1) == 0) {
                     if (strncmp(&str[2], ")", 1) == 0) {
-                        if (str[3] == '\0' || str[3] == '\n') {
-                            return 0;
-                        }
+                        return 0;
                     } else {
-                        printf("(15): expected ')'");
+                        printf("%s", text);
+                        printf("Error(%d): expected ')'\n",
+                               get_index(text, 41));
                         return 1;
                     }
                 } else {
-                    printf("(11): expected ','");
                     return 1;
                 }
             } else {
-                printf("(6): expected '('");
+                printf("%s", text);
+                printf("Error(%d): expected '('\n", get_index(text, 40));
                 return 1;
             }
         } else {
@@ -191,7 +220,8 @@ int Error_check(char* text)
     } else if (strcmp(istr, polygon) == 0) {
         return 0;
     } else {
-        printf("(1): expected cirle, triangele or polygon\n");
+        printf("%s\n", text);
+        printf("Error(0): expected cirle, triangele or polygon\n");
         return 1;
     }
     return 1;
