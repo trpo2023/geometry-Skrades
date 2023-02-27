@@ -13,22 +13,22 @@ void to_low(char text[])
 int check_numbers(char text[], int* p)
 {
     int i = *p;
-    char str2[13] = "-.0123456789";
+    char nums[13] = "-.0123456789";
 
     while (text[i] == ' ') {
         i++;
     }
     if (text[i] == '0') {
-        if (text[i + 1] != '.' && strchr(str2, text[i + 1]) != NULL) {
+        if (text[i + 1] != '.' && strchr(nums, text[i + 1]) != NULL) {
             printf("(%d): expected '.' \n", i);
             return 1;
         }
     }
-    if (strchr(str2, text[i]) == NULL) {
+    if (strchr(nums, text[i]) == NULL) {
         printf("(%d): unexpected character\n", i);
         return 1;
     }
-    while (strchr(str2, text[i]) != NULL) {
+    while (strchr(nums, text[i]) != NULL) {
         i++;
     }
     if (text[i] == ',' || text[i] == ')') {
@@ -43,16 +43,16 @@ int check_numbers(char text[], int* p)
         i++;
     }
     if (text[i] == '0') {
-        if (text[i + 1] != '.' && strchr(str2, text[i + 1]) != NULL) {
+        if (text[i + 1] != '.' && strchr(nums, text[i + 1]) != NULL) {
             printf("(%d): expected '.'\n", i);
             return 1;
         }
     }
-    if (strchr(str2, text[i]) == NULL) {
+    if (strchr(nums, text[i]) == NULL) {
         printf("(%d): unexpected character\n", i);
         return 1;
     }
-    while (strchr(str2, text[i]) != NULL) {
+    while (strchr(nums, text[i]) != NULL) {
         i++;
     }
     while (text[i] == ' ') {
