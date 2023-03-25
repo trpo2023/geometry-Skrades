@@ -173,6 +173,31 @@ void remove_dot(char* text)
     str[j] = '\0';
 }
 
+int circle_check(char* str, char* text)
+{
+    int i = 3;
+    int c = 7;
+    if (check_numbers(text, &c) == 0) {
+        find_numbers(text, i);
+        if (strncmp(&str[0], "(", 1) != 0) {
+            printf("%s", text);
+            printf("Error(%d): expected '('\n", get_index(text, 40));
+            return 1;
+        }
+        if (strncmp(&str[1], ",", 1) != 0) {
+            return 1;
+        }
+        if (strncmp(&str[2], ")", 1) != 0) {
+            printf("%s", text);
+            printf("Error(%d): expected ')'\n", get_index(text, 41));
+            return 1;
+        }
+    } else {
+        return 1;
+    }
+    return 0;
+}
+
 int Error_check(char* text)
 {
     char str[80];
@@ -190,31 +215,7 @@ int Error_check(char* text)
     istr = strtok(ustr, sep);
     to_low(istr);
     if (strcmp(istr, circle) == 0) {
-        int i = 3;
-        int c = 7;
-        if (check_numbers(text, &c) == 0) {
-            find_numbers(text, i);
-            if (strncmp(&str[0], "(", 1) == 0) {
-                if (strncmp(&str[1], ",", 1) == 0) {
-                    if (strncmp(&str[2], ")", 1) == 0) {
-                        return 0;
-                    } else {
-                        printf("%s", text);
-                        printf("Error(%d): expected ')'\n",
-                               get_index(text, 41));
-                        return 1;
-                    }
-                } else {
-                    return 1;
-                }
-            } else {
-                printf("%s", text);
-                printf("Error(%d): expected '('\n", get_index(text, 40));
-                return 1;
-            }
-        } else {
-            return 1;
-        }
+        return circle_check(str, text);
     } else if (strcmp(istr, triangle) == 0) {
         return 0;
     } else if (strcmp(istr, polygon) == 0) {
@@ -224,7 +225,7 @@ int Error_check(char* text)
         printf("Error(0): expected cirle, triangele or polygon\n");
         return 1;
     }
-    return 1;
+    return 0;
 }
 
 int main()
