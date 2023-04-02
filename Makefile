@@ -1,3 +1,3 @@
 all: geometry.exe
-geometry.exe: geometry.c
-	gcc -Wall -Werror -o geometry.exe geometry.c
+geometry.exe: src/geometry/geometry.c
+	gcc -Wall -Werror -I src -o $@ $^
