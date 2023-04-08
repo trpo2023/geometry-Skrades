@@ -99,7 +99,7 @@ double* find_numbers(char* arr, int i)
     int c = 0;
     int t = 0;
     double masi;
-    double* mas = (double*)malloc(i * sizeof(int));
+    double* mas = malloc(i * sizeof(double));
     char nums[10];
     for (int j = 0; j < 10; j++) {
         nums[j] = 'x';

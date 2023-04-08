@@ -26,11 +26,10 @@ int main()
             printf("\n%s", text);
             double* p = find_numbers(text, 3);
             Circle circle = {.point = {.x = p[0], .y = p[1]}, .radius = p[2]};
-            // printf("%.2f", circle.point.x);
             printf("Perimeter = %.2f\n", perimeter(circle.radius));
             printf("Area = %.2f\n", area(circle.radius));
-            // free(p);
-            // p = NULL;
+            free(p);
+            p = NULL;
         }
     }
     return 0;
