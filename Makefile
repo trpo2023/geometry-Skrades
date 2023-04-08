@@ -28,6 +28,4 @@ run:
 clean:
 	rm bin/geometry.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.*
 
-
-
 -include geometry.d finder.d parser.d
