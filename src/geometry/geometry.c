@@ -1,4 +1,4 @@
-#include <libgeometry/finder.h>
+#include <libgeometry/calculator.h>
 #include <libgeometry/parser.h>
 #include <stdio.h>
 #include <stdlib.h>
