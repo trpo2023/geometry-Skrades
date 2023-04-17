@@ -8,7 +8,7 @@ LIB_PATH = obj/src/libgeometry/libgeometry.a
 all: bin/geometry.exe run 
 
 bin/geometry.exe: $(OBJ_GEO)/geometry.o $(LIB_PATH)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -lm
 
 $(OBJ_GEO)/geometry.o: src/geometry/geometry.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ -lm
