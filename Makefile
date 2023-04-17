@@ -5,7 +5,7 @@ OBJ_GEO = obj/src/geometry
 OBJ_LIB = obj/src/libgeometry
 LIB_PATH = obj/src/libgeometry/libgeometry.a
 
-all: bin/geometry.exe run clean
+all: bin/geometry.exe run 
 
 bin/geometry.exe: $(OBJ_GEO)/geometry.o $(LIB_PATH)
 	$(CC) $(CFLAGS) -o $@ $^
