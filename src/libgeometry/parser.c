@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <libgeometry/parser.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,7 +24,7 @@ int get_index(char text[], int x)
 
 void to_low(char text[])
 {
-    for (int i = 0; i < strlen(text) - 1; i++) {
+    for (unsigned int i = 0; i < strlen(text) - 1; i++) {
         text[i] = tolower(text[i]);
     }
 }
@@ -92,18 +93,18 @@ int check_numbers(char text[], int* p)
     return 0;
 }
 
-int find_numbers(char* arr, int i)
+double* find_numbers(char* arr, int i)
 {
     int n = 0;
     int c = 0;
     int t = 0;
     double masi;
-    double mas[i];
+    double* mas = malloc(i * sizeof(double));
     char nums[10];
     for (int j = 0; j < 10; j++) {
         nums[j] = 'x';
     }
-    for (int j = 0; j < strlen(arr); j++) {
+    for (unsigned int j = 0; j < strlen(arr); j++) {
         if ((arr[j] >= 48 && arr[j] <= 57) || arr[j] == 46) {
             nums[t] = arr[j];
             t++;
@@ -125,13 +126,7 @@ int find_numbers(char* arr, int i)
             }
         }
     }
-    if (mas[i - 1] == 0.0) {
-        if (mas[i - 1] == mas[0]) {
-            return 0;
-        }
-        return 1;
-    }
-    return 0;
+    return mas;
 }
 
 void remove_numbers(char* text)
@@ -175,10 +170,8 @@ void remove_dot(char* text)
 
 int circle_check(char* str, char* text)
 {
-    int i = 3;
     int c = 7;
     if (check_numbers(text, &c) == 0) {
-        find_numbers(text, i);
         if (strncmp(&str[0], "(", 1) != 0) {
             printf("%s", text);
             printf("Error(%d): expected '('\n", get_index(text, 40));
@@ -224,22 +217,6 @@ int Error_check(char* text)
         printf("%s\n", text);
         printf("Error(0): expected cirle, triangele or polygon\n");
         return 1;
-    }
-    return 0;
-}
-
-int main()
-{
-    FILE* open;
-    char text[80];
-    if ((open = fopen("text.txt", "r")) == NULL) {
-        printf("Error: can't open the file");
-        return 1;
-    }
-    while (fgets(text, 80, open) != NULL) {
-        if (Error_check(text) == 0) {
-            printf("%s", text);
-        }
     }
     return 0;
 }
