@@ -28,4 +28,6 @@ run:
 clean:
 	rm bin/geometry.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.*
 
+.PHONY: all clean
+
 -include geometry.d finder.d parser.d
