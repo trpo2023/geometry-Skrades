@@ -93,13 +93,13 @@ int check_numbers(char text[], int* p)
     return 0;
 }
 
-double* find_numbers(char* arr, int i)
+float* find_numbers(char* arr, int i)
 {
     int n = 0;
     int c = 0;
     int t = 0;
-    double masi;
-    double* mas = malloc(i * sizeof(double));
+    float masi;
+    float* mas = malloc(i * sizeof(float));
     char nums[10];
     for (int j = 0; j < 10; j++) {
         nums[j] = 'x';

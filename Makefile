@@ -4,6 +4,7 @@ CPPFLAGS = -MMD
 OBJ_GEO = obj/src/geometry
 OBJ_LIB = obj/src/libgeometry
 LIB_PATH = obj/src/libgeometry/libgeometry.a
+TEST_OBJ = obj/test
 
 all: bin/geometry.exe run 
 
@@ -26,8 +27,20 @@ run:
 	./bin/geometry.exe
 
 clean:
-	rm bin/geometry.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.*
+	rm bin/*.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.* $(TEST_OBJ)/*.*
 
-.PHONY: all clean
+test: bin/geometry-test.exe
+	bin/geometry-test.exe
 
--include geometry.d finder.d parser.d
+bin/geometry-test.exe: $(TEST_OBJ)/main.o $(TEST_OBJ)/ctest.o
+	$(CC) -I src -I thirdparty $^ $(LIB_PATH) -o bin/geometry-test -lm
+
+$(TEST_OBJ)/main.o: test/main.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I thirdparty -c $< -o $@
+
+$(TEST_OBJ)/ctest.o: test/ctest.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I thirdparty -c $< -o $@
+
+.PHONY: all clean test
+
+-include geometry.d finder.d parser.d main.d ctest.d
