@@ -27,7 +27,7 @@ run:
 	./bin/geometry.exe
 
 clean:
-	rm bin/*.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.* $(TEST_OBJ)/*.*
+	rm  -f bin/*.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.* $(TEST_OBJ)/*.*
 
 test: bin/geometry-test.exe
 	bin/geometry-test.exe
