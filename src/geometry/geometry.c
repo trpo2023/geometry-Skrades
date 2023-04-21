@@ -24,17 +24,17 @@ int main()
     }
     Circle* circles = malloc(n * sizeof(Circle));
     rewind(open);
-    int c = 0;
+    int i = 0;
     if (flag == 0) {
         while (fgets(text, 80, open) != NULL) {
-            strcpy(circles[c].n, text);
+            strcpy(circles[i].n, text);
             float* p = find_numbers(text, 3);
-            circles[c].point.x = p[0];
-            circles[c].point.y = p[1];
-            circles[c].radius = p[2];
-            circles[c].perimeter = perimeter(circles[c].radius);
-            circles[c].area = area(circles[c].radius);
-            c = c + 1;
+            circles[i].point.x = p[0];
+            circles[i].point.y = p[1];
+            circles[i].radius = p[2];
+            circles[i].perimeter = perimeter(circles[i].radius);
+            circles[i].area = area(circles[i].radius);
+            i = i + 1;
             free(p);
             p = NULL;
         }
@@ -53,5 +53,7 @@ int main()
             printf("\n");
         }
     }
+    free(circles);
+    circles = NULL;
     return 0;
 }
