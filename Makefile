@@ -30,10 +30,10 @@ clean:
 	rm  -f bin/*.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.* $(TEST_OBJ)/*.*
 
 test: bin/geometry-test.exe
-	bin/geometry-test.exe
+	./bin/geometry-test.exe
 
-bin/geometry-test.exe: $(TEST_OBJ)/main.o $(TEST_OBJ)/ctest.o
-	$(CC) -I src -I thirdparty $^ $(LIB_PATH) -o bin/geometry-test -lm
+bin/geometry-test.exe: $(TEST_OBJ)/main.o $(TEST_OBJ)/ctest.o $(LIB_PATH)
+	$(CC) -I src -I thirdparty $^ -o bin/geometry-test.exe -lm
 
 $(TEST_OBJ)/main.o: test/main.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -I thirdparty -c $< -o $@

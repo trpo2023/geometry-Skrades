@@ -1,5 +1,3 @@
 ---
-BasedOnStyle: Microsoft
 DisableFormat: true
 SortIncludes: false
-...
