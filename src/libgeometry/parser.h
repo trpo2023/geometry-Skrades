@@ -6,7 +6,7 @@ void to_low(char text[]);
 
 int check_numbers(char text[], int* p);
 
-double* find_numbers(char* arr, int i);
+float* find_numbers(char* arr, int i);
 
 void remove_numbers(char* text);
 
