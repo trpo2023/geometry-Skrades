@@ -29,7 +29,7 @@ run:
 clean:
 	rm  -f bin/*.exe $(OBJ_GEO)/*.* $(OBJ_LIB)/*.* $(TEST_OBJ)/*.*
 
-test: bin/geometry-test.exe
+test:
 	bin/geometry-test.exe
 
 bin/geometry-test.exe: $(TEST_OBJ)/main.o $(TEST_OBJ)/ctest.o
